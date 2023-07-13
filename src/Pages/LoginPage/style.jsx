@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const Main = styled.div`
     width:100%;
     height:100vh;
-    background: linear-gradient(45deg, #f5f09d, #f5e186, #fffbc1);
+    background: linear-gradient(180deg, #f5f09d, #f5e186, #fffbc1);
 
     display: flex;
     flex-direction: column;
