@@ -14,8 +14,8 @@ export default function Login (){
             </Styled.Button>
         </Styled.Inputs>
 
-        <Link to="/cadastro"> Primeira vez? Cadastre-se </Link>
-        <Link to="/estudante"> Tela Estudante </Link>
+        <Link to="/cadastro"> <p> {"Primeira vez? Cadastre-se"} </p> </Link>
+        <Link to="/estudante"> <p> {"Tela Estudante"}</p> </Link>
 
     </Styled.Main>
 }
