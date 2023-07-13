@@ -24,6 +24,7 @@ export const Main = styled.div`
         font-weight: 400;
         line-height: normal;
         text-decoration: underline;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 `
