@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { keyframes, styled, css } from "styled-components";
 
 
 export const Main = styled.div`
@@ -36,7 +36,7 @@ export const Menu = styled.div`
     height: 100px;
     width: 100%;
    
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 
     display: flex;
     justify-content: center;
@@ -45,6 +45,21 @@ export const Menu = styled.div`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
 
 `
+
+export const User = styled.div`
+    h1{
+        color: #000;
+        text-align: center;
+        font-family: "Roboto";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    margin-bottom: 20px;
+`
+
 
 export const ItemClass = styled.div`
     background-color: #82E79E;
@@ -59,6 +74,8 @@ export const ItemClass = styled.div`
 
     position: relative;
 
+    z-index: 1;
+
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
 
     p{
@@ -72,7 +89,66 @@ export const ItemClass = styled.div`
 
         margin-right: 15px;
     }
+`
+const slideIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const slideDown = keyframes`
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+`;
+
+export const ContainerData = styled.div`
+    display: ${props => props.closeContainer ? "flex" : "none"}
+`
+
+export const Data = styled.div `
+    
+    width: 250px;
+    height: 70px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+
+    background-color: #f8ebc5;
+    
+
+    opacity: 0;
+    transform: translateY(${props => props.showData ? '0' : '-100%'});
+    animation: ${({ showData }) => showData ? css`${slideIn} 0.5s forwards` : css`${slideDown} 0.5s forwards`};
+    
+    border: 1px solid black;
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    li{
+        color: #000;
+        text-align: center;
+        font-family: "Roboto";
+        font-size: 15px;
+        font-style: normal;
+        line-height: normal;
+        padding: 10px;
+    }
 `
 
 export const Icone = styled.div`
