@@ -16,9 +16,15 @@ export const Main = styled.div`
     }
 
     a{
+        color: #000;
+        text-align: center;
+        font-family: "Roboto";
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
         text-decoration: underline;
-        color: black;
-        font-size: 16px;
+        margin-bottom: 10px;
     }
 `
 
