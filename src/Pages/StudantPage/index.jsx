@@ -1,27 +1,12 @@
 import { Link } from "react-router-dom"
 import * as Styled from "./styled"
-import { IoIosArrowDropdown } from "react-icons/io"
-import { FaBars, FaWhatsapp } from "react-icons/fa"
+import {  FaWhatsapp } from "react-icons/fa"
 import { CircularProgressbar } from "react-circular-progressbar"
-import { useState } from "react"
+import classes from "../../config/arrayClass"
+import Class from "../../components/Classes"
 
 
 export function Studant() {
-
-    const [showData, setShowData] = useState(false)
-    const [closeContainer, setCloseContainer] = useState(false)
-
-    function dataClass() {
-        setShowData(!showData)
-       
-        setTimeout(()=>{
-            setCloseContainer(!closeContainer)
-        }, 500)
-
-
-    }
-
-
     return (
         <Styled.Main>
             <Styled.Menu >
@@ -50,43 +35,7 @@ export function Studant() {
                 <h1>{"Bem-vindo(a), João!"}</h1>
             </Styled.User>
 
-            <Styled.ItemClass>
-                <p>{"Arrependimento"} </p>
-                <Styled.Icone onClick={dataClass}>
-                    <IoIosArrowDropdown style={{ fontSize: "30px" }} />
-                </Styled.Icone>
-            </Styled.ItemClass>
-
-            <Styled.ContainerData closeContainer={closeContainer}>
-                <Styled.Data showData={showData}>
-                    <ul>
-                        <li>Aula concluída em: 12/07/2022</li>
-                        <li>Professor(a): Taís </li>
-                    </ul>
-                </Styled.Data>
-            </Styled.ContainerData>
-
-
-            <Styled.ItemClass>
-                <p>{"Fé"}  </p>
-                <Styled.Icone>
-                    <IoIosArrowDropdown style={{ fontSize: "30px" }} />
-                </Styled.Icone>
-            </Styled.ItemClass>
-
-            <Styled.ItemClass>
-                <p>{"Salvação"}  </p>
-                <Styled.Icone>
-                    <IoIosArrowDropdown style={{ fontSize: "30px" }} />
-                </Styled.Icone>
-            </Styled.ItemClass>
-
-            <Styled.ItemClass>
-                <p>{"Imersão"} </p>
-                <Styled.Icone>
-                    <IoIosArrowDropdown style={{ fontSize: "30px" }} />
-                </Styled.Icone>
-            </Styled.ItemClass>
+           {classes.map((item,index) => <Class key={index} className={item}/>)}
 
             <Styled.Contacts>
                 <Link>
