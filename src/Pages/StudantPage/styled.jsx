@@ -62,7 +62,8 @@ export const User = styled.div`
 
 
 export const ItemClass = styled.div`
-    background-color: #82E79E;
+    /* background-color: #82E79E; */
+    background-color: ${props => props.classDone ? "#82E79E" : "white" };
     width: 250px;
     height: 70px;
     border: 1px solid #000;

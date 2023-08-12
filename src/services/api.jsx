@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_API_URL
+const BASE_URL = import.meta.env.VITE_APP_API_URL
 
 function createConfig(token) {
     return { headers: { Authorization: `Bearer ${token}` } };
@@ -13,7 +13,7 @@ function login(body) {
 
 function getStudent(token) {
     const config = createConfig(token)
-    const promise = axios.get(`${BASE_URL}/speed`, {}, config)
+    const promise = axios.get(`${BASE_URL}/speed`, config)
     return promise
 }
 

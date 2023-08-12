@@ -1,45 +1,59 @@
 import * as Styled from "./style.jsx"
 import Logo from "../../assets/Logo.jpeg"
-import { Link } from "react-router-dom"
-import { Button, TextField, ThemeProvider, createTheme } from "@mui/material"
+import { Link, useNavigate } from "react-router-dom"
+import { TextField, ThemeProvider, createTheme } from "@mui/material"
 import { styled } from "styled-components"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Input from "../../components/Form/Input.jsx"
+import ButtonFrom from "../../components/Form/Button.jsx"
+import api from "../../services/api.jsx"
+import UserData from "../../context/UserContext.jsx"
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
+import UserContext from "../../context/UserContext.jsx"
 
-const theme = createTheme({
-    palette: {
-        ochre: {
-            main: '#000000',
-            light: '#000000',
-            dark: '#0254b3',
-            contrastText: '#f8f8f6',
-        },
-    },
-})
+
 export default function Login() {
 
     const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+    
+    const {setUserData} = useContext(UserContext)
 
-    console.log(email)
+    const navigate = useNavigate()
 
+    async function submit(event){
+        event.preventDefault();
 
+        const body = {
+            email,
+            "password" : senha
+        }
 
+        try {
+            const userData = await api.login(body)
+            setUserData(userData.data)
+            toast("Login realizado com sucesso!")
+            navigate("/estudante")
+        } catch (error) {
+            toast('Não foi possível fazer o login!');
+        }
+    }
 
-    return <Styled.Main>
+    return (<Styled.Main>
         <img src={Logo} />
 
-        <Styled.Inputs>
-            <Input label="Email" type="text" variant="outlined" value={email} onChange={e => setEmail(e.target.value)}/>
-            <StyledTextField label="Senha" variant="outlined" />
-            <ThemeProvider theme={theme}>
-                <StyledButton color={"ochre"} variant="contained">Entrar</StyledButton>
-            </ThemeProvider>
-        </Styled.Inputs>
-
+        <form onSubmit={submit}>
+            <Styled.Inputs>
+                <Input label="Email" type="text" variant="outlined" value={email} onChange={e => setEmail(e.target.value)} />
+                <Input label="Senha" type="password" variant="outlined" value={senha} onChange={e => setSenha(e.target.value)} />
+                <ButtonFrom type="submit"> Entrar </ButtonFrom>
+            </Styled.Inputs>
+        </form>
         <Link to="/cadastro"> <p> {"Primeira vez? Cadastre-se"} </p> </Link>
-        <Link to="/estudante"> <p> {"Tela Estudante"}</p> </Link>
 
     </Styled.Main>
+    )
 }
 
 const StyledTextField = styled(TextField)`
@@ -49,7 +63,3 @@ const StyledTextField = styled(TextField)`
   border-radius: 5px;
   border: 1px solid #000;
 `;
-
-const StyledButton = styled(Button)`
-  margin-top: 14px !important;
-`
