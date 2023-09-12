@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import * as Styled from "./styled"
 import { FaWhatsapp } from "react-icons/fa"
 import { CircularProgressbar } from "react-circular-progressbar"
-import classes from "../../config/arrayClass"
+import {datas} from "../../utils/datas"
 import Class from "../../components/Classes"
 import { useContext, useEffect, useState } from "react"
 import UserContext from "../../context/UserContext"
@@ -19,7 +19,7 @@ export function Studant() {
         const data = api.getStudent(userData.token)
         data.then(res => {
             setClassData(res.data),
-                setPorcentagem((res.data.classes.length / classes.length) * 100)
+                setPorcentagem((res.data.classes.length / datas.classes.length) * 100)
         })
     }, [])
 
@@ -71,7 +71,7 @@ export function Studant() {
                         <h1>{`Bem-vindo(a), ${userData.name}!`}</h1>
                     </Styled.User>
 
-                    {classes.map((item, index) => <Class key={index} className={item} classData={classData} />)}
+                    {datas.classes.map((item, index) => <Class key={index} className={item} classData={classData} />)}
 
                     <Styled.Contacts>
                         <Link>
